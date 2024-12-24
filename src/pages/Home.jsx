@@ -1,9 +1,10 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import OfferCards from "../components/Card";
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-gray-100">
       <Navbar />
       <div class="flex items-center justify-center min-h-[90vh] font-montserrat bg-gray-100 px-14">
         {/* <!-- Wrapper for the entire component --> */}
@@ -85,6 +86,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <OfferCards/>
     </div>
   );
 };
