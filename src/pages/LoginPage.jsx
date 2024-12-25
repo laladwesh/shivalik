@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-//import {  useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
- // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -41,7 +41,10 @@ const LoginPage = () => {
         data = await response.text(); // Parse plain text response
       }
       if(data.success) {
-        console.log("OTP sent successfully:", data);
+        navigate("/verify-otp" , {
+          state: { email: formData.email }, // Pass email to VerificationPage
+        });
+        //console.log("OTP sent successfully:", data);
       }
       
     } catch (error) {

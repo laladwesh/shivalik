@@ -6,6 +6,8 @@ import Footer from "./components/Footer";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
+import VerificationPage from "./pages/VerificationPage";
+import SignInPage from "./pages/SignInPage";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/login" element={<LoginPage/>} />
+        <Route path="/verify-otp" element={<VerificationPage/>} />
+        <Route path="/sign-in" element={<SignInPage/>} />
       </Routes>
       <Footer />
     </div>
