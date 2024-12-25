@@ -13,6 +13,9 @@ module.exports = {
       fontFamily: {
         montserrat: ['"Montserrat"', 'sans-serif'], // Add Montserrat font
       },
+      backgroundImage: {
+        'hero-pattern': "url('/public/doodle2.png')", // Add hero pattern image
+      },
     },
   },
   plugins: [],
