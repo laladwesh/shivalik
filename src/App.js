@@ -8,6 +8,8 @@ import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
 import VerificationPage from "./pages/VerificationPage";
 import SignInPage from "./pages/SignInPage";
+import AccountPage from "./pages/AccountPage";
+import OrderHistoryPage from "./pages/OrderHistoryPage";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/verify-otp" element={<VerificationPage/>} />
         <Route path="/sign-in" element={<SignInPage/>} />
+        <Route path="/my-acc" element={<AccountPage/>} />
+        <Route path="/order-his" element={<OrderHistoryPage/>} />
       </Routes>
       <Footer />
     </div>
