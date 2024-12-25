@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         primary: "#5230B2", // Define your custom color
         secondary: "#F0EDF8", // Define your custom color
+        heading:"#1a0066"
       },
       fontFamily: {
         montserrat: ['"Montserrat"', 'sans-serif'], // Add Montserrat font

@@ -27,7 +27,7 @@ const AllServicePage = () => {
             </g>
           </svg>
         </button>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary font-montserrat mb-2 text-center lg:text-left">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-heading font-montserrat mb-2 text-center lg:text-left">
           Our Services
         </h2>
         <hr className="border-t-2 border-primary my-4" />

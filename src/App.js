@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import AllServicePage from "./pages/AllServicePage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/allservices" element={<AllServicePage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/contact" element={<AboutPage />} />
       </Routes>
       <Footer/>
     </div>
