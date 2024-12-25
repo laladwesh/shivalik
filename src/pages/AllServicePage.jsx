@@ -1,19 +1,38 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const OfferCards = () => {
+const AllServicePage = () => {
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1); // This navigates to the previous page in the history stack
+  };
   return (
-    <div className="px-4 md:px-16 lg:px-28 mt-6 bg-gray-100">
+    <div className="px-4 md:px-16 lg:px-28 bg-gray-100 font-montserrat">
       <div className="bg-white shadow-xl rounded-3xl items-center px-6 md:px-12 lg:px-16 py-6 md:py-8">
+        <button className="mb-11" onClick={goBack}>
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="arrow_back">
+              <path
+                id="icon"
+                d="M10.434 17.3333L17.9007 24.8L16.0007 26.6666L5.33398 16L16.0007 5.33331L17.9007 7.19998L10.434 14.6666H26.6673V17.3333H10.434Z"
+                fill="#3D3D3D"
+              />
+            </g>
+          </svg>
+        </button>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary font-montserrat mb-2 text-center lg:text-left">
-          What we offer?
+          Our Services
         </h2>
         <hr className="border-t-2 border-primary my-4" />
-        <p className="text-gray-600 font-montserrat text-center lg:text-left">
-          Get instant, accurate pricing for all your printing needs with our
-          price calculator.
-        </p>
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 md:gap-y-11">
-          {Array.from({ length: 6 }).map((_, index) => (
+        <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 md:gap-y-11 ">
+          {Array.from({ length: 12 }).map((_, index) => (
             <div
               key={index}
               className="w-full h-[480px] bg-white rounded-md flex flex-col justify-between p-4"
@@ -30,15 +49,9 @@ const OfferCards = () => {
             </div>
           ))}
         </div>
-        <div className="h-20 flex items-center justify-end mt-8">
-          <a href="/allservices"><button className="h-12 px-6 rounded-3xl font-montserrat hover:bg-secondary transition text-primary bg-transparent  flex items-center justify-center">
-            See All
-          </button>
-          </a>
-        </div>
       </div>
     </div>
   );
 };
 
-export default OfferCards;
+export default AllServicePage;

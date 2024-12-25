@@ -1,12 +1,11 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+//import Navbar from "../components/Navbar";
 import OfferCards from "../components/Card";
-import Footer from "../components/Footer";
+//import Footer from "../components/Footer";
 
 const Home = () => {
   return (
     <div className="bg-gray-100">
-      <Navbar />
       <div class="flex items-center justify-center min-h-[90vh] font-montserrat bg-gray-100 px-14">
         {/* <!-- Wrapper for the entire component --> */}
         <div class="w-full h-[100vh] flex px-16 space-x-11 p-2  ">
@@ -88,7 +87,7 @@ const Home = () => {
         </div>
       </div>
       <OfferCards/>
-      <Footer/>
+      
     </div>
   );
 };
