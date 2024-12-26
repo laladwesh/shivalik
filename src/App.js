@@ -6,10 +6,11 @@ import Footer from "./components/Footer";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
-import VerificationPage from "./pages/VerificationPage";
+//import VerificationPage from "./pages/VerificationPage";
 import SignInPage from "./pages/SignInPage";
 import AccountPage from "./pages/AccountPage";
 import OrderHistoryPage from "./pages/OrderHistoryPage";
+import ServicePage from "./pages/ServicePage";
 
 function App() {
   return (
@@ -21,10 +22,10 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/login" element={<LoginPage/>} />
-        <Route path="/verify-otp" element={<VerificationPage/>} />
         <Route path="/sign-in" element={<SignInPage/>} />
         <Route path="/my-acc" element={<AccountPage/>} />
         <Route path="/order-his" element={<OrderHistoryPage/>} />
+        <Route path="/service" element={<ServicePage/>} />
       </Routes>
       <Footer />
     </div>
