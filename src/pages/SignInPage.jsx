@@ -30,6 +30,8 @@ const SignInPage = () => {
     toast.error(message, {
       position: "top-right",
       autoClose: 5000,
+      className: "custom-toast",
+      progressClassName: "custom-progress",
     });
   };
 
@@ -37,6 +39,8 @@ const SignInPage = () => {
     toast.success(message, {
       position: "top-right",
       autoClose: 5000,
+      className: "custom-toast",
+      progressClassName: "custom-progress",
     });
   };
 

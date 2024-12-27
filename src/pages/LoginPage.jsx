@@ -18,6 +18,8 @@ const LoginPage = () => {
     toast.error(message, {
       position: "top-right",
       autoClose: 5000,
+      className: "custom-toast",
+      progressClassName: "custom-progress",
     });
   };
 

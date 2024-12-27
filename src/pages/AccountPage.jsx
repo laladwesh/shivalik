@@ -35,19 +35,14 @@ const AccountPage = () => {
     try {
       // Clear user session from context
       userContext.setUser(null);
-  
+
       // Optionally, clear session storage or local storage
       localStorage.removeItem("token"); // Remove token if stored in local storage
       sessionStorage.removeItem("token"); // If stored in session storage
-  
+
       // Display a logout success message
-      toast.info("You have been logged out.", {
-        position: "top-right",
-        autoClose: 3000,
-        className: "custom-toast",
-        progressClassName: "custom-progress",
-      });
-  
+      handleSuccess("You have been logged out.");
+
       // Add a small delay to ensure the toast displays before navigating
       setTimeout(() => {
         navigate("/sign-up");
@@ -60,8 +55,7 @@ const AccountPage = () => {
       });
     }
   };
-  
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent page reload
 
@@ -78,7 +72,7 @@ const AccountPage = () => {
 
       if (response.ok) {
         // console.log("Data saved successfully:", data);
-        
+
         // Update the user context with the updated data
         userContext.setUser(data.updatedUser || formData); // Ensure the backend sends updated user info
         handleSuccess("Your changes have been saved.");
@@ -103,112 +97,161 @@ const AccountPage = () => {
             <hr className="border-t-2 border-primary my-4" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* First Name */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 relative">
                 <label className="text-[#5b5b5b] text-sm md:text-base font-semibold">
                   First name
                 </label>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  placeholder="e.g. Raj"
-                  className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base"
-                  required
-                />
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    placeholder="e.g. Raj"
+                    className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base w-full"
+                    required
+                  />
+                  <img
+                    src="icon.png"
+                    className="w-8 h-8 absolute right-3 top-1/2 transform -translate-y-1/2"
+                    alt="Edit Icon"
+                  />
+                </div>
               </div>
               {/* Last Name */}
-              <div className="flex flex-col gap-2">
+             <div className="flex flex-col gap-2 relative">
                 <label className="text-[#5b5b5b] text-sm md:text-base font-semibold">
                   Last name
                 </label>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  placeholder="e.g. Sharma"
-                  className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base"
-                  required
-                />
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    placeholder="e.g. Sharma"
+                    className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base w-full"
+                    required
+                  />
+                  <img
+                    src="icon.png"
+                    className="w-8 h-8 absolute right-3 top-1/2 transform -translate-y-1/2"
+                    alt="Edit Icon"
+                  />
+                </div>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Phone Number */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 relative">
                 <label className="text-[#5b5b5b] text-sm md:text-base font-semibold">
                   Phone number
                 </label>
+                <div className="relative">
                 <input
                   type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="e.g. 987654321"
-                  className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base"
+                  className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base w-full"
                   required
                 />
+                 <img
+                    src="icon.png"
+                    className="w-8 h-8 absolute right-3 top-1/2 transform -translate-y-1/2"
+                    alt="Edit Icon"
+                  />
+                </div>
               </div>
               {/* Email */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 relative">
                 <label className="text-[#5b5b5b] text-sm md:text-base font-semibold">
                   Email
                 </label>
+                <div className="relative">
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="e.g. Raj1234@gmail.com"
-                  className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base"
+                  className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base w-full"
                   required
                 />
+                <img
+                    src="icon.png"
+                    className="w-8 h-8 absolute right-3 top-1/2 transform -translate-y-1/2"
+                    alt="Edit Icon"
+                  />
+              </div>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
               {/* Company Name */}
-              <div className="flex flex-col gap-2 col-span-full">
+              <div className="flex flex-col gap-2 col-span-full relative">
                 <label className="text-[#5b5b5b] text-sm md:text-base font-semibold">
                   Company’s name
                 </label>
+                <div className="relative">
                 <input
                   type="text"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
                   placeholder="e.g. Raj Industries Pvt. Ltd."
-                  className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base"
+                  className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base w-full"
                 />
+                <img
+                    src="icon.png"
+                    className="w-8 h-8 absolute right-3 top-1/2 transform -translate-y-1/2"
+                    alt="Edit Icon"
+                  />
+                </div>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* State */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 relative">
                 <label className="text-[#5b5b5b] text-sm md:text-base font-semibold">
                   State
                 </label>
+                <div className="relative">
                 <input
                   type="text"
                   name="state"
                   value={formData.state}
                   onChange={handleChange}
                   placeholder="e.g. Maharashtra"
-                  className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base"
+                  className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base w-full"
                 />
+                <img
+                    src="icon.png"
+                    className="w-8 h-8 absolute right-3 top-1/2 transform -translate-y-1/2"
+                    alt="Edit Icon"
+                  />
+                </div>
               </div>
               {/* Pincode */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 relative">
                 <label className="text-[#5b5b5b] text-sm md:text-base font-semibold">
                   Pincode
                 </label>
+                <div className="relative">
                 <input
                   type="number"
                   name="pincode"
                   value={formData.pincode}
                   onChange={handleChange}
                   placeholder="6-Digit code"
-                  className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base"
+                  className="h-12 px-4 bg-[#f4f4f4] rounded-lg text-[#5b5b5b] text-sm md:text-base w-full"
                 />
+                <img
+                    src="icon.png"
+                    className="w-8 h-8 absolute right-3 top-1/2 transform -translate-y-1/2"
+                    alt="Edit Icon"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -230,7 +273,7 @@ const AccountPage = () => {
             </button>
           </div>
         </form>
-         <ToastContainer />
+        <ToastContainer />
       </div>
     </div>
   );
