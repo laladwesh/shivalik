@@ -14,7 +14,7 @@ const settings = {
   autoplaySpeed: 3000,
 };
 
-const ServiceSection1 = () => {
+const ServiceSection1 = ({onKnowMoreClick}) => {
   return (
     <div className="px-4 md:px-16 lg:px-28 bg-gray-100 gap-y-8 gap-x-8 font-montserrat flex flex-col lg:flex-row h-auto lg:h-[85vh]">
       {/* Left Section: Slider */}
@@ -63,6 +63,7 @@ const ServiceSection1 = () => {
         <div className="mt-auto w-full flex flex-col gap-4">
           <button
             type="button"
+            onClick={onKnowMoreClick}
             className="w-full px-6 py-2 md:px-12 md:py-3 border-2 border-[#5230b2] text-[#5230b2] hover:bg-secondary text-sm md:text-lg lg:text-xl font-semibold rounded-2xl"
           >
             Know the price

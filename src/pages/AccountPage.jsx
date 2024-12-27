@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useOrder } from "../context/order";
 const AccountPage = () => {
+  const orderContext = useOrder();
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
   const [formData, setFormData] = useState({});
@@ -35,6 +37,7 @@ const AccountPage = () => {
     try {
       // Clear user session from context
       userContext.setUser(null);
+      orderContext.setOrder(null);
 
       // Optionally, clear session storage or local storage
       localStorage.removeItem("token"); // Remove token if stored in local storage

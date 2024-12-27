@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import AccordionWithOptions from "../Accordion";
+import { UserContext } from "../../context/user";
+import { useNavigate } from "react-router-dom";
 
 const ServiceSection3 = () => {
+  const userContext = useContext(UserContext); 
+  const navigate = useNavigate();
+  const handleCalculate = () => {
+    if(!userContext.user){
+      navigate("/sign-up");
+      return;
+    }else{
+      navigate("/price");
+    }
+  };
   return (
     <div className="px-4 md:px-16 lg:px-28 bg-gray-100 font-montserrat">
       <div className="bg-white shadow-3xl rounded-3xl items-center px-6 md:px-12 lg:px-16 py-6 md:py-8 mt-6">
@@ -15,14 +27,15 @@ const ServiceSection3 = () => {
         </p>
         <div className="flex gap-x-7 mt-8">
           <div className="w-full">
-            <AccordionWithOptions is={true} title="Print Colour" />
-            <AccordionWithOptions is={false} title="Paper Size" />
-            <AccordionWithOptions is={false} title="GSM" />
-            <AccordionWithOptions is={false} title="Binding Type" />
+            <AccordionWithOptions is={true} title="Print Colour" category="printcolour" />
+            <AccordionWithOptions is={false} title="Paper Size" category="papersize" />
+            <AccordionWithOptions is={false} title="GSM" category="gsm" />
+            <AccordionWithOptions is={false} title="Binding Type" category="bindingtype" />
           </div>
           <div className="w-4/6 mt-auto flex justify-center">
             <button
               type="button"
+              onClick={handleCalculate}
               className="w-5/6 px-6 py-2 md:px-12 md:py-3 border-2 border-[#5230b2] text-[#5230b2] hover:bg-secondary text-sm md:text-lg lg:text-xl font-semibold rounded-2xl"
             >
               Calculate price

@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 //import Navbar from "../components/Navbar";
 import OfferCards from "../components/Card";
+import { useOrder } from "../context/order";
 //import Footer from "../components/Footer";
 
 const Home = () => {
+  const { order } = useOrder();
+
+  useEffect(() => {
+    console.log("Current Order in Home:", order);
+  }, [order]);
+
+
   return (
     <div className="bg-gray-100">
       <div class="flex items-center justify-center min-h-[90vh] font-montserrat bg-gray-100 px-14">
