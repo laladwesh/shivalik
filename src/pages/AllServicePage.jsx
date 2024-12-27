@@ -42,9 +42,9 @@ const AllServicePage = () => {
                 <h3 className="text-lg md:text-xl font-semibold mt-4 font-montserrat">
                   Lorem Ipsum
                 </h3>
-                <button className="mt-4 px-4 md:px-6 py-2 md:py-4 font-montserrat w-full border-2 border-primary text-primary rounded-xl md:rounded-2xl hover:bg-secondary transition">
+                <a href="/service"><button className="mt-4 px-4 md:px-6 py-2 md:py-4 font-montserrat w-full border-2 border-primary text-primary rounded-xl md:rounded-2xl hover:bg-secondary transition">
                   Details
-                </button>
+                </button> </a>
               </div>
             </div>
           ))}

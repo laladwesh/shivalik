@@ -11,11 +11,11 @@ const Footer = () => {
 
         {/* Navigation Links */}
         <div className="flex flex-wrap justify-between w-full sm:w-11/12 font-montserrat mx-auto text-white text-sm sm:text-base font-semibold mt-6 sm:mt-8">
-          <span className="cursor-pointer mb-3 sm:mb-0">Contact us</span>
-          <span className="cursor-pointer mb-3 sm:mb-0">Home</span>
-          <span className="cursor-pointer mb-3 sm:mb-0">About us</span>
-          <span className="cursor-pointer mb-3 sm:mb-0">Account</span>
-          <span className="cursor-pointer mb-3 sm:mb-0">Order history</span>
+          <a href="/contact"><span className="cursor-pointer mb-3 sm:mb-0">Contact us</span></a>
+          <a href="/"><span className="cursor-pointer mb-3 sm:mb-0">Home</span></a>
+          <a href="/about"><span className="cursor-pointer mb-3 sm:mb-0">About us</span></a>
+          <a href="/my-acc"><span className="cursor-pointer mb-3 sm:mb-0">Account</span></a>
+          <a href="/order-his"><span className="cursor-pointer mb-3 sm:mb-0">Order history</span></a>
         </div>
       </div>
     </div>

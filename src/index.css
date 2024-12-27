@@ -19,3 +19,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* Custom styles for the toast container */
+.custom-toast .Toastify__toast-icon svg {
+  fill: #5230B2; /* Your tick icon color */
+}
+
+/* Custom styles for the progress bar */
+.custom-progress {
+  background-color: #5230B2 !important; /* Your desired progress bar color */
+}

@@ -1,8 +1,21 @@
-import React from "react";
-
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/user";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const AccountPage = () => {
-  const [formData, setFormData] = React.useState({});
-  
+  const navigate = useNavigate();
+  const userContext = useContext(UserContext);
+  const [formData, setFormData] = useState({});
+
+  useEffect(() => {
+    if (!userContext.user) {
+      navigate(-1);
+    } else {
+      setFormData(userContext.user);
+    }
+  }, [userContext.user, navigate]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -10,11 +23,73 @@ const AccountPage = () => {
       [name]: value,
     }));
   };
-
+  const handleSuccess = (message) => {
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 5000,
+      className: "custom-toast",
+      progressClassName: "custom-progress",
+    });
+  };
+  const handleLogout = async () => {
+    try {
+      // Clear user session from context
+      userContext.setUser(null);
+  
+      // Optionally, clear session storage or local storage
+      localStorage.removeItem("token"); // Remove token if stored in local storage
+      sessionStorage.removeItem("token"); // If stored in session storage
+  
+      // Display a logout success message
+      toast.info("You have been logged out.", {
+        position: "top-right",
+        autoClose: 3000,
+        className: "custom-toast",
+        progressClassName: "custom-progress",
+      });
+  
+      // Add a small delay to ensure the toast displays before navigating
+      setTimeout(() => {
+        navigate("/sign-up");
+      }, 1000);
+    } catch (error) {
+      console.error("Error during logout:", error);
+      toast.error("An error occurred during logout. Please try again.", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    }
+  };
+  
+  
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    // Handle form submission logic here
-    console.log("Form Submitted: ", formData);
+    event.preventDefault(); // Prevent page reload
+
+    try {
+      const response = await fetch("http://localhost:4000/api/v1/update-user", {
+        method: "PUT", // Use PUT or POST based on your backend setup
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData), // Send form data as JSON
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // console.log("Data saved successfully:", data);
+        
+        // Update the user context with the updated data
+        userContext.setUser(data.updatedUser || formData); // Ensure the backend sends updated user info
+        handleSuccess("Your changes have been saved.");
+      } else {
+        console.error("Error saving data:", data.message);
+        alert("Failed to save changes: " + (data.message || "Unknown error"));
+      }
+    } catch (error) {
+      console.error("Error occurred while saving data:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -141,12 +216,21 @@ const AccountPage = () => {
           <div className="flex flex-col md:flex-row justify-end gap-4">
             <button
               type="submit"
-              className="w-full md:w-auto px-6 py-3 bg-[#5230b2] text-white text-sm md:text-base rounded-2xl"
+              className="w-full md:w-auto px-6 py-3 bg-[#5230b2] transition hover:bg-heading text-white text-sm md:text-base rounded-2xl"
             >
               Save Changes
             </button>
           </div>
+          <div className="flex flex-col md:flex-row justify-end gap-4">
+            <button
+              onClick={handleLogout}
+              className="w-full md:w-auto px-6 py-3 transition bg-[#fff] border-primary border-2 hover:bg-secondary text-primary text-sm md:text-base rounded-2xl"
+            >
+              Log Out
+            </button>
+          </div>
         </form>
+         <ToastContainer />
       </div>
     </div>
   );

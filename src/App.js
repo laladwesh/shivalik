@@ -21,7 +21,7 @@ function App() {
         <Route path="/allservices" element={<AllServicePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/sign-up" element={<LoginPage/>} />
         <Route path="/sign-in" element={<SignInPage/>} />
         <Route path="/my-acc" element={<AccountPage/>} />
         <Route path="/order-his" element={<OrderHistoryPage/>} />

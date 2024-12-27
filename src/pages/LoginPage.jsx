@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../context/user";
 
 const LoginPage = () => {
+  const userContext = useContext(UserContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (userContext.user && userContext.user.email) {
+      navigate(-1);
+    }
+  }, []);
+
   const handleError = (message) => {
     toast.error(message, {
       position: "top-right",
@@ -15,6 +25,8 @@ const LoginPage = () => {
     toast.success(message, {
       position: "top-right",
       autoClose: 5000,
+      className: "custom-toast",
+      progressClassName: "custom-progress",
     });
   };
 
@@ -38,6 +50,9 @@ const LoginPage = () => {
       [name]: value,
     }));
   };
+  useEffect(() => {
+    console.log("Updated user context:", userContext.user);
+  }, [userContext.user]);
 
   const handleLoginSubmit = async (event) => {
     setLoading(true);
@@ -73,7 +88,9 @@ const LoginPage = () => {
     }
   };
 
-  const navigate = useNavigate();
+  const goback = () => {
+    setSecondPage(false);
+  };
 
   const handleCancel = (event) => {
     event.preventDefault();
@@ -102,6 +119,8 @@ const LoginPage = () => {
       if (data.success) {
         handleSuccess("Account created successfully!");
         navigate("/");
+        userContext.setUser(formData);
+        console.log(userContext.user);
       } else {
         handleError(data.message || "Verification failed.");
       }
@@ -113,7 +132,7 @@ const LoginPage = () => {
 
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-28 bg-gray-100 font-montserrat">
-      <div className="w-full h-auto lg:h-[115vh] p-6 md:p-10 lg:p-14 bg-white rounded-[16px] md:rounded-[24px] lg:rounded-[32px] shadow-md flex flex-col lg:flex-row gap-10 lg:gap-14">
+      <div className="w-full h-auto lg:h-[120vh] p-6 md:p-10 lg:p-14 bg-white rounded-[16px] md:rounded-[24px] lg:rounded-[32px] shadow-md flex flex-col lg:flex-row gap-10 lg:gap-14">
         {secondpage ? (
           <form
             onSubmit={handleVerificationSubmit}
@@ -162,6 +181,12 @@ const LoginPage = () => {
             >
               Verify OTP
             </button>
+            <p className="text-[#5b5b5b] text-sm md:text-base font-semibold">
+              Incorrect number?{" "}
+              <a className="text-primary cursor-pointer" onClick={goback}>
+                Go back
+              </a>
+            </p>
           </form>
         ) : (
           <form
@@ -275,6 +300,12 @@ const LoginPage = () => {
                 </div>
               </div>
             </div>
+            <p className="text-[#5b5b5b] text-sm md:text-base font-semibold">
+              Already have an account?{" "}
+              <a href="/sign-in" className="text-primary cursor-pointer" onClick={goback}>
+                Login
+              </a>
+            </p>
             <button
               type="submit"
               className="w-full px-12 py-3 md:px-24 md:py-4 bg-[#5230b2] flex justify-center text-white text-lg md:text-2xl font-bold rounded-2xl"
