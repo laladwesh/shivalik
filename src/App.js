@@ -12,6 +12,8 @@ import AccountPage from "./pages/AccountPage";
 import OrderHistoryPage from "./pages/OrderHistoryPage";
 import ServicePage from "./pages/ServicePage";
 import PricePage from "./pages/PricePage";
+import AddressPage from "./pages/AddressPage";
+import PaymentPage from "./pages/PaymentPage";
 
 function App() {
   return (
@@ -26,8 +28,10 @@ function App() {
         <Route path="/sign-in" element={<SignInPage/>} />
         <Route path="/my-acc" element={<AccountPage/>} />
         <Route path="/order-his" element={<OrderHistoryPage/>} />
-        <Route path="/service" element={<ServicePage/>} />
+        <Route path="/service/:id" element={<ServicePage/>} />
         <Route path="/price" element={<PricePage/>} />
+        <Route path="/address" element={<AddressPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
       </Routes>
       <Footer />
     </div>

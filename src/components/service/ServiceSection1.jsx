@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useNavigate, useParams } from 'react-router-dom';
 
 const settings = {
   dots: true,
@@ -15,39 +16,46 @@ const settings = {
 };
 
 const ServiceSection1 = ({onKnowMoreClick}) => {
+  const { id } = useParams(); // Extract the dynamic part from the URL
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    const fetchSlides = async () => {
+      try {
+        const response = await fetch(`http://localhost:4000/api/v1/services/${id}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch slides");
+        }
+        const data = await response.json();
+        setSlides(data.slides); // Assuming the backend returns a `slides` array
+      } catch (error) {
+        console.error("Error fetching slides:", error);
+      }
+    };
+
+    fetchSlides();
+  }, [id]);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/price"); // Redirect to PricePage
+  }
   return (
     <div className="px-4 md:px-16 lg:px-28 bg-gray-100 gap-y-8 gap-x-8 font-montserrat flex flex-col lg:flex-row h-auto lg:h-[85vh]">
       {/* Left Section: Slider */}
       <div className="bg-white shadow-xl rounded-3xl items-center px-6 w-full lg:w-7/12 md:px-12 lg:px-16 py-6 md:py-8 flex">
         <Slider {...settings} className="w-full h-full">
-          <div className="w-full h-[50vh] lg:h-[60vh] flex justify-center items-center bg-gray-200 rounded-2xl">
-            <img
-              src="https://via.placeholder.com/600x400"
-              alt="Slide 1"
-              className="w-full h-full object-contain rounded-2xl"
-            />
-          </div>
-          <div className="w-full h-[50vh] lg:h-[60vh] flex justify-center items-center bg-gray-200 rounded-2xl">
-            <img
-              src="https://via.placeholder.com/600x400"
-              alt="Slide 2"
-              className="w-full h-full object-contain rounded-2xl"
-            />
-          </div>
-          <div className="w-full h-[50vh] lg:h-[60vh] flex justify-center items-center bg-gray-200 rounded-2xl">
-            <img
-              src="https://via.placeholder.com/600x400"
-              alt="Slide 3"
-              className="w-full h-full object-contain rounded-2xl"
-            />
-          </div>
-          <div className="w-full h-[60vh] flex justify-center items-center bg-gray-200 rounded-2xl">
-            <img
-              src="https://via.placeholder.com/600x400"
-              alt="Slide 4"
-              className="w-full h-full object-contain rounded-2xl"
-            />
-          </div>
+        {slides.map((slide, index) => (
+        <div
+          key={index}
+          className={`w-full h-[50vh] lg:h-[60vh] flex justify-center items-center bg-gray-200 rounded-2xl`}
+        >
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            className="w-full h-full object-contain rounded-2xl"
+          />
+        </div>
+      ))}
         </Slider>
       </div>
 
@@ -68,7 +76,7 @@ const ServiceSection1 = ({onKnowMoreClick}) => {
           >
             Know the price
           </button>
-          <button className="w-full px-6 py-2 md:px-12 md:py-3 bg-[#5230b2] flex justify-center text-white text-sm md:text-lg lg:text-xl font-bold rounded-2xl">
+          <button onClick={handleClick} className="w-full px-6 py-2 md:px-12 md:py-3 bg-[#5230b2] flex justify-center text-white text-sm md:text-lg lg:text-xl font-bold rounded-2xl">
             Place an order
           </button>
         </div>

@@ -50,7 +50,7 @@ const ServiceSection2 = () => {
           {/* Card 3 */}
           <div className="bg-[#f8f8fc] p-6 rounded-2xl shadow-md w-full flex flex-col ">
             <div className="w-20 h-20 mb-4">
-              <img src="quality1.png" className="w-full h-full" alt="Quality" />
+              <img src="/quality1.png" className="w-full h-full" alt="Quality" />
             </div>
             <h3 className="text-lg md:text-xl font-semibold text-gray-800">
               Quality

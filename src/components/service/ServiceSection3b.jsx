@@ -6,7 +6,7 @@ import { useOrder } from "../../context/order";
 const ServiceSection3b = () => {
   const navigate = useNavigate();
   const order = useOrder();
-  console.log(order.order);
+
   const handleCalculate = () => {
     navigate("/price");
   };
@@ -48,19 +48,31 @@ const ServiceSection3b = () => {
             {/* Summary Section */}
             <div className="w-full max-w-sm bg-purple-100 p-4 rounded-xl shadow-md flex-grow">
               <h2 className="text-lg font-semibold mb-4">Summary</h2>
-              <ul className="space-y-2">
-                {Object.entries(order.order).map(([key, value]) => (
-                  <li className="flex justify-between" key={key}>
-                    <span>{key.charAt(0).toUpperCase() + key.slice(1)}</span>
-                    <span>${value.price}</span>
-                  </li>
-                ))}
-              </ul>
-              <hr className="my-4 border-gray-300" />
-              <div className="flex justify-between font-semibold">
-                <span>TOTAL</span>
-                <span>${Object.values(order.order).reduce((total, item) => total + item.price, 0)}</span>
-              </div>
+              {order?.order && Object.keys(order.order).length > 0 ? (
+                <>
+                  <ul className="space-y-2">
+                    {Object.entries(order.order).map(([key, value]) => (
+                      <li className="flex justify-between" key={key}>
+                        <span>{key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                        <span>${value.price}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <hr className="my-4 border-gray-300" />
+                  <div className="flex justify-between font-semibold">
+                    <span>TOTAL</span>
+                    <span>
+                      $
+                      {Object.values(order.order).reduce(
+                        (total, item) => total + item.price,
+                        0
+                      )}
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <p className="text-gray-500">No items in the order summary.</p>
+              )}
             </div>
 
             {/* Button Section */}

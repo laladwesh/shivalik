@@ -1,16 +1,43 @@
 import React from "react";
 import { useOrder } from "../context/order";
 import AccordionWithOptions from "../components/Accordion";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PricePage = () => {
   const order = useOrder();
   const navigate = useNavigate();
+  const location = useLocation();
+  const steps = [
+    { label: "Requirements", path: "/price" },
+    { label: "Address", path: "" },
+    { label: "Payment", path: "" },
+    { label: "Confirmation", path: "" },
+  ];
   return (
     <div className=" flex px-4 md:px-16 lg:px-28 gap-x-8 bg-gray-100 font-montserrat">
       <div className="bg-white  shadow-xl w-full rounded-3xl px-6 md:px-12 lg:px-16 py-16">
       <div className="px-3">
-      <div><span class="text-[#5230b2] text-base font-medium font-['Montserrat'] leading-none"><a href="/price">Requirements</a> </span><span class="text-[#3d3d3d] text-base font-medium font-['Montserrat'] leading-none">{"> Address > Payment > Confirmation"}</span></div>
+      <div className="flex items-center space-x-2">
+      {steps.map((step, index) => (
+        <div key={step.path} className="flex items-center">
+          {/* Link */}
+          <span
+            className={`text-base font-medium font-['Montserrat'] leading-none ${
+              location.pathname === step.path ? "text-[#5230b2]" : "text-[#3d3d3d]"
+            }`}
+          >
+            <a href={step.path} className="">
+              {step.label}
+            </a>
+          </span>
+
+          {/* ">" icon except for the last item */}
+          {index < steps.length - 1 && (
+            <span className="mx-2 text-[#3d3d3d]">{">"}</span>
+          )}
+        </div>
+      ))}
+    </div>
       <div class="text-[#1a0066] text-5xl font-bold font-['Montserrat'] my-10 leading-10">Book printing</div>
       <div class="text-[#3d3d3d] text-base font-normal font-['Montserrat'] leading-snug">Choose options according to your requirements</div>
       </div>

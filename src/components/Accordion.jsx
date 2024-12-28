@@ -11,11 +11,11 @@ const AccordionWithOptions = ({ is, title, category }) => {
   const toggleAccordion = () => setIsOpen(!isOpen);
 
   useEffect(() => {
-    if (isOpen && !hasFetched) {
+    if ( !hasFetched) {
       const fetchData = async () => {
         try {
           const response = await fetch(
-            `http://localhost:4000/api/v1/materials/${category}`,
+            `http://localhost:4000/api/v1/materials/idxx/${category}`,
             {
               method: "GET",
               headers: {
@@ -110,6 +110,7 @@ const AccordionWithOptions = ({ is, title, category }) => {
                 <div>
                   <h4 className="font-semibold text-gray-800">{item.name}</h4>
                   <p className="text-sm text-gray-600">{item.description}</p>
+                  <p className="text-sm text-gray-600">{item.price}</p>
                 </div>
                 <input
                   type="radio"
