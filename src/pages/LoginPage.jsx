@@ -122,7 +122,7 @@ const LoginPage = () => {
         handleSuccess("Account created successfully!");
         navigate("/");
         userContext.setUser(formData);
-        console.log(userContext.user);
+        // console.log(userContext.user);
       } else {
         handleError(data.message || "Verification failed.");
       }

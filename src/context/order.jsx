@@ -17,14 +17,14 @@ export const OrderProvider = ({ children }) => {
       return updatedOrder;
     });
   };
-
+  const[address,setAddress]=useState(null);
   useEffect(() => {
     // Save order state to localStorage whenever it changes
     localStorage.setItem("order", JSON.stringify(order));
   }, [order]);
 
   return (
-    <OrderContext.Provider value={{ order, updateOrder , setOrder }}>
+    <OrderContext.Provider value={{ order, updateOrder , setOrder , address , setAddress}}>
       {children}
     </OrderContext.Provider>
   );

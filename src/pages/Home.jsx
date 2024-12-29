@@ -7,9 +7,9 @@ import { useOrder } from "../context/order";
 const Home = () => {
   const { order } = useOrder();
 
-  useEffect(() => {
-    console.log("Current Order in Home:", order);
-  }, [order]);
+  // useEffect(() => {
+   console.log("Current Order in Home:", order);
+  // }, [order]);
 
 
   return (

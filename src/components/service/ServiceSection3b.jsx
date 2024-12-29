@@ -22,29 +22,37 @@ const ServiceSection3b = () => {
           Get instant, accurate pricing for all your printing needs with our
           price calculator. Choose options according to your requirements.
         </p>
-        <div className="flex gap-x-7 mt-8">
+        <div className="flex flex-col lg:flex-row justify-center gap-x-7 mt-8">
           {/* Accordion Section */}
           <div className="w-full flex-grow">
-            <AccordionWithOptions
-              is={true}
-              title="Print Colour"
-              category="printcolour"
-            />
-            <AccordionWithOptions
-              is={false}
-              title="Paper Size"
-              category="papersize"
-            />
-            <AccordionWithOptions is={false} title="GSM" category="gsm" />
-            <AccordionWithOptions
-              is={false}
-              title="Binding Type"
-              category="bindingtype"
-            />
+          <AccordionWithOptions
+  is={true}
+  title="Print Colour"
+  category="printcolour"
+  selected={order.order?.printcolour?.id}
+/>
+<AccordionWithOptions
+  is={false}
+  title="Paper Size"
+  category="papersize"
+  selected={order.order?.papersize?.id}
+/>
+<AccordionWithOptions
+  is={false}
+  title="GSM"
+  category="gsm"
+  selected={order.order?.gsm?.id}
+/>
+<AccordionWithOptions
+  is={false}
+  title="Binding Type"
+  category="bindingtype"
+  selected={order.order?.bindingtype?.id}
+/>
           </div>
 
           {/* Summary & Button Section */}
-          <div className="w-5/6 flex flex-col h-full items-center gap-6">
+          <div className="w-5/6 flex flex-col mx-auto h-full items-center gap-6">
             {/* Summary Section */}
             <div className="w-full max-w-sm bg-purple-100 p-4 rounded-xl shadow-md flex-grow">
               <h2 className="text-lg font-semibold mb-4">Summary</h2>

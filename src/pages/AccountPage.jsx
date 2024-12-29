@@ -74,7 +74,7 @@ const AccountPage = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // console.log("Data saved successfully:", data);
+         console.log("Data saved successfully:", data);
 
         // Update the user context with the updated data
         userContext.setUser(data.updatedUser || formData); // Ensure the backend sends updated user info

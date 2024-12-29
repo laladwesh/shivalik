@@ -5,12 +5,16 @@ import ServiceSection2 from "../components/service/ServiceSection2";
 import ServiceSection3 from "../components/service/ServiceSection3";
 import ServiceSection4 from "../components/service/ServiceSection4";
 import ServiceSection3b from "../components/service/ServiceSection3b";
+import { useParams } from "react-router-dom";
+import { useOrder } from "../context/order";
 
 
 const ServicePage = () => {
   const section3Ref = useRef(null); // Create a reference for ServiceSection3
   const userContext = useContext(UserContext);
-
+  const{ setAddress} = useOrder();
+  const {id} = useParams();
+      setAddress(id);  
   const scrollToSection3 = () => {
     section3Ref.current.scrollIntoView({ behavior: "smooth" }); // Scroll to ServiceSection3 smoothly
   };
